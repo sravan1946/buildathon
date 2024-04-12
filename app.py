@@ -23,7 +23,7 @@ class Student(UserMixin):
         self.name = name
         self.email = email
         self.password = password
-        self.created_at = datetime.datetime.now()
+        self.created_at = datetime.datetime.now().timestamp()
         self.DOB = DOB
         self.grade = grade
         self.gender = gender
@@ -75,7 +75,8 @@ def register():
         name = request.form.get("name")
         email = request.form.get("email")
         password = request.form.get("password")
-        DOB: datetime.date = request.form.get("DOB") # type: ignore
+        print(request.form)
+        DOB: str = datetime.date(*map(int, request.form.get("DOB").split("-"))).isoformat()
         grade = request.form.get("grade")
         gender: str = request.form.get("gender", "male")
         phone_no: int = request.form.get("phone_no", 0, type=int)
@@ -98,11 +99,11 @@ def register():
                 json.dump([], f)
             students = []
         if student.email in [student["email"] for student in students]:
-            return redirect(url_for("register", error="Email already exists"))
+            return render_template("register.html", error="Email already exists")
         if student.phone_no in [student["phone_no"] for student in students]:
-            return redirect(url_for("register", error="Phone number already exists"))
-        if student.DOB > datetime.date.today():
-            return redirect(url_for("register", error="Invalid Date of Birth"))
+            return render_template("register.html", error="Phone Number already exists")
+        if student.DOB > datetime.date.today().isoformat():
+            return render_template("register.html", error="Invalid Date of Birth")
         students.append(student.to_dict())
         with open("./data/students.json", "w") as f:
             json.dump(students, f, default=lambda x: x.__dict__())
@@ -111,3 +112,23 @@ def register():
         session["logged_in"] = True
         return redirect(url_for("login.html", error="Registration Successful. Please login to continue"))
     return render_template("register.html")
+
+@app.route("/login", methods=["POST", "GET"])
+@app.route("/login/", methods=["POST", "GET"])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("student_dashboard"))
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        with open("./data/students.json", "r") as f:
+            students = json.load(f)
+        for student in students:
+            if student["email"] == email and student["password"] == password:
+                student = Student(**student)
+                login_user(student, force=True)
+                session["student"] = student.to_dict()
+                session["logged_in"] = True
+                return redirect(url_for("student_dashboard"))
+        return redirect(url_for("login", error="Invalid Credentials"))
+    return render_template("login.html")
