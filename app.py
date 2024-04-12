@@ -78,3 +78,4 @@ def register():
         gender = request.form.get("gender")
         phone_no = request.form.get("phone_no")
         sid = str(uuid.uuid4())
+        student = Student(sid, name, email, password, DOB, grade, gender, phone_no)
