@@ -9,30 +9,48 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <input type="text" name="name" value="Name">
+        <label for="name" id="name-label">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
         <br>
 
 
-        <input type="email" name="email" value="E-mail" placeholder="E-mail">
+        <label for="email" id="email-label">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
         <br>
         
-        <input type="date" name="dob" placeholder="Date of Birth">
+        <label for="dob" id="dob">Date of Birth:</label>
+        <input type = "date" id="dob", name="dob" required/>
         <br>
         
-        <input type="radio" id="male" name="" value="HTML">
-        <label for="male">Male</label><br>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <br>
         
-        <input type="radio" id="female" name="fav_language" value="CSS">
-        <label for="female">Female</label><br>
-        
-        <input type="radio" id="other" name="other" value="other">
-        <label for="other">Other</label><br>
-        
-        <label for="parents_name">Parents Name: </label><br>
-        <input type="parents_name" name="phoneno" id="parents_name" value="Parents Name">
+        <label for="class">Class:</label>
+        <select id="class" name="class" required>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <br>
+
+        <label for="phone_no">Phone Number:</label>
+        <input type="tel" id="phone_no" name="phone_no" required>
+        <br>
 
 
-        <input type="number" name="parents_no" id="parents_no" value="Parent Number">
+        <button formaction="<name of file>">Sign Up</button>
+        
+        
 
         <script src="" async defer></script>
     </body>
