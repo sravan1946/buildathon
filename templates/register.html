@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
+        <form action="{{url_for('register')}}" method="POST">
         <label for="name" id="name-label">Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter your name" required>
         <br>
@@ -48,8 +49,8 @@
         <br>
 
 
-        <button formaction="<name of file>">Sign Up</button>
-        
+        <button type="submit">Sign Up</button>
+        </form>
         
 
         <script src="" async defer></script>
