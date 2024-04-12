@@ -107,9 +107,6 @@ def register():
         students.append(student.to_dict())
         with open("./data/students.json", "w") as f:
             json.dump(students, f, default=lambda x: x.__dict__())
-        login_user(student, force=True)
-        session["student"] = student.to_dict()
-        session["logged_in"] = True
         return redirect(url_for("login.html", error="Registration Successful. Please login to continue"))
     return render_template("register.html")
 
@@ -132,3 +129,8 @@ def login():
                 return redirect(url_for("student_dashboard"))
         return redirect(url_for("login", error="Invalid Credentials"))
     return render_template("login.html")
+
+@app.route("/")
+@app.route("/index")
+def index():
+    return render_template("index.html")
