@@ -107,7 +107,7 @@ def register():
         students.append(student.to_dict())
         with open("./data/students.json", "w") as f:
             json.dump(students, f, default=lambda x: x.__dict__())
-        return redirect(url_for("login.html", error="Registration Successful. Please login to continue"))
+        return redirect(url_for("login", error="Registration Successful. Please login to continue"))
     return render_template("register.html")
 
 @app.route("/login", methods=["POST", "GET"])
