@@ -115,7 +115,7 @@ def register():
 @app.route("/login/", methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("student_dashboard"))
+        return redirect(url_for("dashboard"))
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
@@ -127,7 +127,7 @@ def login():
                 login_user(student, force=True)
                 session["student"] = student.to_dict()
                 session["logged_in"] = True
-                return redirect(url_for("student_dashboard"))
+                return redirect(url_for("dashboard"))
         return redirect(url_for("login", error="Invalid Credentials"))
     return render_template("login.html")
 
