@@ -7,32 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>sidebar</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
   <!-- <script src="./tailwind3.js"></script> -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
-<body class="bg-blue-600  font-[Poppins]">
-  <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
+<body class="dark:bg-slate-900  font-[Poppins]">
+  <span class="absolute text-white text-4xl top-5 left- cursor-pointer" onclick="Openbar()">
     <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
   </span>
-  <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
-    p-2 w-[300px] overflow-y-auto text-center bg-gray-900 shadow h-screen">
+  <div class="sidebar dark:bg-gray-500 fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
+    p-2 w-[320px] overflow-y-auto text-center bg-gray-900 shadow h-screen" style="background-color: #2f1c5a;">
     <div class="text-gray-100 text-xl">
       <div class="p-2.5 mt-1 flex items-center rounded-md ">
         <i class="bi bi-app-indicator px-2 py-1 bg-blue-600 rounded-md"></i>
-        <h1 class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">Tailwindbar</h1>
+        <h1 class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">PeerLearn</h1>
         <i class="bi bi-x ml-20 cursor-pointer lg:hidden" onclick="Openbar()"></i>
       </div>
       <hr class="my-2 text-gray-600">
 
       <div>
-        <div class="p-2.5 mt-3 flex items-center rounded-md 
-        px-4 duration-300 cursor-pointer  bg-gray-700">
-          <i class="bi bi-search text-sm"></i>
-          <input class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" placeholder="Serach" />
-        </div>
+    
 
         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
           <i class="bi bi-house-door-fill"></i>
@@ -44,34 +41,108 @@
         </div>
         <hr class="my-4 text-gray-600">
         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-          <i class="bi bi-envelope-fill"></i>
-          <span class="text-[15px] ml-4 text-gray-200">Messages</span>
+            <i class="bi bi-clock-history"></i>
+          <span class="text-[15px] ml-4 text-gray-200">History</span>
         </div>
-
         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-          <i class="bi bi-chat-left-text-fill"></i>
-          <div class="flex justify-between w-full items-center" onclick="dropDown()">
-            <span class="text-[15px] ml-4 text-gray-200">Chatbox</span>
-            <span class="text-sm rotate-180" id="arrow">
-              <i class="bi bi-chevron-down"></i>
-            </span>
+            <i class="bi bi-award"></i>
+            <span class="text-[15px] ml-4 text-gray-200">Badges</span>
           </div>
-        </div>
+
+        
         <div class=" leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto" id="submenu">
           <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Social</h1>
           <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Personal</h1>
           <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Friends</h1>
         </div>
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span class="text-[15px] ml-4 text-gray-200">Logout</span>
-          hello
+        <div class="p-2.5 mt-3 absolute flex w-full bottom-12 mb-2 left-0 items-center justify-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600 absolute">
+            <i class="bi bi-gear"></i>
+          <span class="text-[15px] ml-4 text-gray-200">Settings</span>
+          
         </div>
-
+        <form action="{{url_for('logout')}}" method="POST">
+        <div class="p-2.5 mt-3 absolute flex w-full bottom-0 mb-2 left-0 items-center justify-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600 absolute">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span class="text-[15px] ml-4 text-gray-200" type="submit"><a href="{{(url_for('logout'))}}">Logout</span>
+          
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  <!--main card-->
+  <!-- component -->
+<!-- This is an example component -->
+<!-- component -->
+<!-- This is an example component -->
+<div class='flex ml-96 w-96 flex-col bg-slate-900 pt-10'>
+    <div class='break-inside relative overflow-hidden flex flex-col justify-between space-y-2 text-sm rounded-xl max-w-[23rem] p-4 mb-4 bg-[#5E17F4] text-white'>
+        <span class='uppercase text-xs text-[#D2BDFF]'>13th April, 2024</span>
+        <div class='flex flex-row items-center space-x-3'>
+            
+            <span class='text-base font-medium'>Welcome back, Sravan Krishna</span>
+        </div>
+        <!-- <div class='flex justify-between items-center'>
+            <span>Modify your data</span>
+            <button class='flex items-center justify-center text-xs font-medium rounded-full px-4 py-2 space-x-1 bg-white text-black'>
+            <span>Next step</span>
+            <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                <path d='M5 12h13M12 5l7 7-7 7' />
+            </svg>
+            </button>
+        </div> -->
+        
+    </div>
+    
+</div>
+<!--profile-->
+<div class="mx-auto my-10 flex max-w-xs flex-col items-center rounded-xl border px-4 py-4 text-center md:max-w-lg md:flex-row md:items-start md:text-left fixed right-40 top-0">
+    <div class="mb-4 md:mr-6 md:mb-0">
+      <img class="h-56 rounded-lg object-cover md:w-56" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="" />
+    </div>
+    <div class="">
+      <p class="text-xl font-medium text-white-700">Sravan Krishna </p>
+      <p class="mb-4 text-sm font-medium text-white-500">12th</p> 
+      <div class="flex space-x-2">
+        <div class="flex flex-col items-center rounded-xl bg-gray-100 px-4 py-2">
+          <p class="text-sm font-medium text-gray-500">Articles</p>
+          <p class="text-3xl font-medium text-gray-600">13</p>
+        </div>
+        <div class="flex flex-col items-center rounded-xl bg-gray-100 px-4 py-2">
+          <p class="text-sm font-medium text-gray-500">Papers</p>
+          <p class="text-3xl font-medium text-gray-600">7</p>
+        </div>
+        <div class="flex flex-col items-center rounded-xl bg-gray-100 px-4 py-2">
+          <p class="text-sm font-medium text-gray-500">Followers</p>
+          <p class="text-3xl font-medium text-gray-600">2.5k</p>
+        </div>
+        <div class=""></div>
+      </div>
+      <div class="mb-3"></div>
+      <div class="flex space-x-2">
+        <button class="w-full rounded-lg border-2 bg-white px-4 py-2 font-medium text-gray-500">Message</button>
+        <button class="w-full rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white">Follow</button>
       </div>
     </div>
   </div>
 
+  <!--Two More card-->
+  
+<!--footer-->
+<div class="w-screen flex h-screen">
+    <svg class="fixed bottom-0 left-80" viewBox="0 0 1425 205.55" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <path d="M0,17.27l23.75,5.09C47.5,27.38,95,37.57,142.5,39.47s95-4.36,142.5-10.28,95-11.35,142.5-7.4,95,17.43,142.5,24,95,6.25,142.5,5.83,95-.9,142.5-3S950,43,997.5,42.92s95,3.12,142.5,2.88,95-4.11,142.5-3.62,95,5.51,118.75,8L1425,52.62v170.2H0Z" fill="#220073"></path>
+        <path d="M0,94.56l23.75-6.17C47.5,82.22,95,69.89,142.5,65.2s95-1.64,142.5,4.85S380,86.33,427.5,86.5,522.5,77,570,73.59s95-.66,142.5,1.81,95,4.6,142.5,3.78,95-4.6,142.5-6.58,95-1.89,142.5,1.24,95,9.45,142.5,13.15,95,4.85,118.75,5.35l23.75.57V222.82H0Z" fill="#200866"></path>
+        <path d="M0,134,23.75,132C47.5,129.91,95,125.8,142.5,125.39s95,2.88,142.5,5.75,95,5.35,142.5,4,95-6.58,142.5-8.06,95,.66,142.5-.41,95-5.51,142.5-9.21,95-6.66,142.5-5.83,95,5.42,142.5,9.86,95,8.47,142.5,9.05,95-2.47,118.75-4L1425,125v97.84H0Z" fill="#191046"></path>
+        <path d="M0,178.42l23.75-1.64c23.75-1.65,71.25-4.94,118.75-5.59s95,1.23,142.5,2.71,95,2.63,142.5,4.11,95,3.45,142.5,2.88,95-3.54,142.5-8.8,95-12.58,142.5-13.57,95,4.53,142.5,8.23,95,5.67,142.5,4,95-6.91,142.5-9.79,95-3.37,118.75-3.7L1425,157v65.78H0Z" fill="#111827"></path>
+      </g>
+      <defs>
+        <clipPath id="clip0"><rect width="1425" height="444" fill="white"></rect></clipPath>
+      </defs>
+    </svg>
+  </div>
+  <!--end footer-->
   <script>
     function dropDown() {
       document.querySelector('#submenu').classList.toggle('hidden')
