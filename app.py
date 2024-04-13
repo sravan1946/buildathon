@@ -71,7 +71,7 @@ def load_user(sid):
 @app.route("/signup", methods=["POST", "GET"]) # type: ignore
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for("student_dashboard"))
+        return redirect(url_for("dashboard"))
     if request.method == "POST":
         name = request.form.get("name")
         email = request.form.get("email")
@@ -113,6 +113,7 @@ def register():
 
 @app.route("/login", methods=["POST", "GET"])
 @app.route("/login/", methods=["POST", "GET"])
+@app.route("/", methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for("dashboard"))
@@ -131,11 +132,20 @@ def login():
         return redirect(url_for("login", error="Invalid Credentials"))
     return render_template("login.html")
 
-@app.route("/")
-@app.route("/index")
-def index():
-    return render_template("index.html")
+
 
 @app.route("/dashboard")
+@login_required
 def dashboard():
     return render_template("dashboard.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    session.clear()
+    return redirect(url_for("login"))
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for("unauthorized"))

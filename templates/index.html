@@ -24,6 +24,7 @@
             <a class="mr-5  text-xl hover:text-pink-600 mr-5 transition ease-in-out delay-10  hover:scale-110  ">About us</a>
             <a class="mr-5  text-xl hover:text-pink-600 mr-5 transition ease-in-out delay-10  hover:scale-110 ">Fourth Link</a>
           </nav>
+          {% if not session['logged_in'] %}
           <form action="{{url_for('register')}}" method="GET">
           <button class="inline-flex items-center bg-pink-600 border-0 py-1 px-3 focus:outline-none text-xl hover:text-pink-600 hover:bg-white rounded text-base mt-4 md:mt-0 transition delay-10 ease-in-out">Sign Up
           </button>
@@ -32,6 +33,12 @@
           <button class="inline-flex items-center bg-pink-600 border-0 py-1 px-3 focus:outline-none text-xl hover:text-pink-600 hover:bg-white rounded text-base mt-4 md:mt-0 ml-5 transition delay-10 ease-in-out">Sign In
         </button>
     </form>
+          {% else %}
+          <form action="{{url_for('logout')}}" method="GET">
+          <button class="inline-flex items-center bg-pink-600 border-0 py-1 px-3 focus:outline-none text-xl hover:text-pink-600 hover:bg-white rounded text-base mt-4 md:mt-0 transition delay-10 ease-in-out">Logout
+          </button>
+        </form>
+          {% endif %}
         </div>
       </header>
 </body>
