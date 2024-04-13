@@ -127,7 +127,7 @@ def login():
                 login_user(student, force=True)
                 session["student"] = student.to_dict()
                 session["logged_in"] = True
-                return redirect(url_for("dashboard", name=student.name))
+                return render_template("dashboard.html", name=student.name)
         return redirect(url_for("login", error="Invalid Credentials"))
     return render_template("login.html")
 
