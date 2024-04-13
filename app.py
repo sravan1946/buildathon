@@ -18,6 +18,7 @@ class Student(UserMixin):
         grade,
         gender,
         phone_no,
+        **kwargs
     ):
         self.sid = sid
         self.name = name
