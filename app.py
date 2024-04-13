@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session, render_template, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-
+import requests
 import json
 import datetime
 import uuid
@@ -128,10 +128,17 @@ def login():
                 login_user(student, force=True)
                 session["student"] = student.to_dict()
                 session["logged_in"] = True
-                return render_template("dashboard.html", name=student.name)
+                return redirect(url_for("dashboard"))
         return redirect(url_for("login", error="Invalid Credentials"))
     return render_template("login.html")
 
+
+@app.route("/profile/<int:sid>")
+@login_required
+def profile(sid):
+    if current_user.sid != sid:
+        return render_template("unauthorized.html")
+    return render_template("profile.html", student=current_user)
 
 
 @app.route("/dashboard")
@@ -148,4 +155,9 @@ def logout():
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    return redirect(url_for("unauthorized"))
+    return render_template("unauthorized.html")
+
+def get_profile_pic(name):
+    url = f"https://robohash.org/{name}"
+    response = requests.get(url)
+    return response.content
